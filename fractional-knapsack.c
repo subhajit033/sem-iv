@@ -1,21 +1,5 @@
 #include <stdio.h>
 
-void display1(float arr[], int n)
-{
-    for (int i = 0; i < n; i++)
-    {
-        printf("%.1f ", arr[i]); // Print one digit after the decimal
-    }
-    printf("\n");
-}
-void display2(int arr[], int n)
-{
-    for (int i = 0; i < n; i++)
-    {
-        printf("%d ", arr[i]);
-    }
-    printf("\n");
-}
 
 void swap1(float *a, float *b)
 {
@@ -25,7 +9,7 @@ void swap1(float *a, float *b)
 }
 void swap2(int *a, int *b)
 {
-    int temp = *a; // Change to int
+    int temp = *a; 
     *a = *b;
     *b = temp;
 }
@@ -36,7 +20,7 @@ void sortArr(int p[], int w[], float p_vs_w[], int n)
     {
         for (int j = 0; j < n - i - 1; j++)
         {
-            if (p_vs_w[j] < p_vs_w[j + 1]) // Change to descending order if needed
+            if (p_vs_w[j] < p_vs_w[j + 1]) 
             {
                 swap1(&p_vs_w[j], &p_vs_w[j + 1]);
                 swap2(&p[j], &p[j + 1]);
@@ -68,10 +52,10 @@ float findProfit(int p[], int w[], float p_vs_w[], int n, int wt)
 
 int main()
 {
-    int n = 4;
-    int p[10] = {40, 30, 80, 70};
-    int w[10] = {10, 30, 20, 50};
-    int W = 60;
+    int n = 2;
+    int p[10] = {60,100};
+    int w[10] = {10, 20};
+    int W = 50;
     float profit_vs_wt[10];
 
     for (int i = 0; i < n; i++)
