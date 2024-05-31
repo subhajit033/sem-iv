@@ -36,6 +36,6 @@ int main()
 	
 	printf("Minimum number of multiplications is %d ",
 		MatrixChainOrder(arr, 1, N - 1));
-	getchar();
+	
 	return 0;
 }

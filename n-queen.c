@@ -4,12 +4,13 @@
 #include <stdbool.h>
 #include <stdio.h>
 
-
 void printSolution(int board[N][N])
 {
-	for (int i = 0; i < N; i++) {
-		for (int j = 0; j < N; j++) {
-			if(board[i][j])
+	for (int i = 0; i < N; i++)
+	{
+		for (int j = 0; j < N; j++)
+		{
+			if (board[i][j])
 				printf("Q ");
 			else
 				printf(". ");
@@ -18,40 +19,52 @@ void printSolution(int board[N][N])
 	}
 }
 
-
 bool isSafe(int board[N][N], int row, int col)
 {
-	int i, j;
+	int duprow = row;
+	int dupcol = col;
 
-	
-	for (i = 0; i < col; i++)
-		if (board[row][i])
+	while (row >= 0 && col >= 0)
+	{
+		if (board[row][col] == 1)
 			return false;
+		row--;
+		col--;
+	}
 
-	
-	for (i = row, j = col; i >= 0 && j >= 0; i--, j--)
-		if (board[i][j])
+	col = dupcol;
+	row = duprow;
+	while (col >= 0)
+	{
+		if (board[row][col] == 1)
 			return false;
+		col--;
+	}
 
-	// Check lower diagonal on left side
-	for (i = row, j = col; j >= 0 && i < N; i++, j--)
-		if (board[i][j])
+	row = duprow;
+	col = dupcol;
+	while (row < N && col >= 0)
+	{
+		if (board[row][col] == 1)
 			return false;
-
+		row++;
+		col--;
+	}
 	return true;
 }
 
-
 bool solveNQUtil(int board[N][N], int col)
 {
-	
+
 	if (col >= N)
 		return true;
 
-	for (int i = 0; i < N; i++) {
-		
-		if (isSafe(board, i, col)) {
-			
+	for (int i = 0; i < N; i++)
+	{
+
+		if (isSafe(board, i, col))
+		{
+
 			board[i][col] = 1;
 
 			if (solveNQUtil(board, col + 1))
@@ -64,15 +77,15 @@ bool solveNQUtil(int board[N][N], int col)
 	return false;
 }
 
-
 bool solveNQ()
 {
-	int board[N][N] = { { 0, 0, 0, 0 },
-						{ 0, 0, 0, 0 },
-						{ 0, 0, 0, 0 },
-						{ 0, 0, 0, 0 } };
+	int board[N][N] = {{0, 0, 0, 0},
+					   {0, 0, 0, 0},
+					   {0, 0, 0, 0},
+					   {0, 0, 0, 0}};
 
-	if (solveNQUtil(board, 0) == false) {
+	if (solveNQUtil(board, 0) == false)
+	{
 		printf("Solution does not exist");
 		return false;
 	}
@@ -87,5 +100,3 @@ int main()
 	solveNQ();
 	return 0;
 }
-
-// This code is contributed by Aditya Kumar (adityakumar129)
